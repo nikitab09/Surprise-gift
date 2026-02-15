@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For My Love ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            overflow: hidden;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 320px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Smaller Mobile Gift */
+        .gift {
+            width: 70px;
+            height: 70px;
+            background: #ff4d6d;
+            margin: 20px auto;
+            position: relative;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .gift:hover {
+            transform: scale(1.1);
+        }
+
+        .gift::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 70px;
+            background: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .lid {
+            width: 70px;
+            height: 22px;
+            background: #c9184a;
+            position: absolute;
+            top: -22px;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.8s ease;
+            transform-origin: bottom;
+        }
+
+        .open .lid {
+            transform: rotateX(150deg);
+        }
+
+        .content {
+            display: none;
+            margin-top: 15px;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        .content p {
+            font-size: 15px;
+            margin: 8px 0;
+        }
+
+        img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 15px;
+            margin-top: 12px;
+            box-shadow: 0 0 15px pink;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 18px;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(100vh); opacity: 1;}
+            100% {transform: translateY(-10vh); opacity: 0;}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Tap the Gift 🎁</h2>
+
+    <div class="gift" onclick="openGift(this)">
+        <div class="lid"></div>
+    </div>
+
+    <div class="content" id="surprise">
+        <p>No matter what happens, I’ll always stand beside you, Mur Deha❤️</p>
+        <p>I’m so lucky to have you🥰</p>
+
+        <img src="photo.jpg" alt="Our Photo">
+    </div>
+</div>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+function openGift(box) {
+    box.classList.add("open");
+    document.getElementById("surprise").style.display = "block";
+    document.getElementById("music").play();
+}
+
+/* Floating hearts */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 600);
+</script>
+
+</body>
+</html>
